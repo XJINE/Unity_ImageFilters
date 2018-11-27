@@ -16,10 +16,11 @@
             #pragma fragment frag
 
             sampler2D _MainTex;
+            float4    _MainTex_TexelSize;
 
             fixed4 frag(v2f_img input) : SV_Target
             {
-                return SobelFilter(_MainTex, _ScreenParams.zw - 1, input.uv);
+                return SobelFilter(_MainTex, _MainTex_TexelSize.xy, input.uv);
             }
 
             ENDCG

@@ -118,9 +118,9 @@ float4 MovingAverageFilter(sampler2D image, float2 pixelLength, float2 texCoord,
         }
     }
 
-    int filterWidthPx = halfFilterSizePx * 2 + 1;
+    int filterSizePx = halfFilterSizePx * 2 + 1;
 
-    color.rgb /= filterWidthPx * filterWidthPx;
+    color.rgb /= filterSizePx * filterSizePx;
 
     return color;
 }

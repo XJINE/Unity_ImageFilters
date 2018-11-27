@@ -19,10 +19,11 @@
             #pragma multi_compile _DITHER_DOT _DITHER_BAYER
 
             sampler2D _MainTex;
+            float4    _MainTex_TexelSize;
 
             fixed4 frag(v2f_img input) : SV_Target
             {
-                return DitheringFilterDot(_MainTex, _ScreenParams.xy, input.uv);
+                return DitheringFilterDot(_MainTex, _MainTex_TexelSize.zw, input.uv);
             }
 
             ENDCG
