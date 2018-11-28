@@ -2,9 +2,10 @@
 {
     Properties
     {
+        [HideInInspector]
+        _MainTex("Texture", 2D) = "white" {}
         [KeywordEnum(DOT, BAYER)]
         _DITHER("Dither Type", Float) = 0
-        _MainTex("Texture", 2D) = "white" {}
     }
     SubShader
     {

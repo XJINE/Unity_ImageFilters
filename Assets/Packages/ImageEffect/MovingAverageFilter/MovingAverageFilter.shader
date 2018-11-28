@@ -2,8 +2,9 @@
 {
     Properties
     {
+        [HideInInspector]
         _MainTex("Texture", 2D) = "white" {}
-        _HalfFilterSizePx ("Half Filter Size", Int) = 1
+        _HalfFilterSizePx("Half Filter Size", Int) = 1
     }
     SubShader
     {

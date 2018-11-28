@@ -2,6 +2,7 @@
 {
     Properties
     {
+        [HideInInspector]
         _MainTex("Texture", 2D) = "white" {}
     }
     SubShader
