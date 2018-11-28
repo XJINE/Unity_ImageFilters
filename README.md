@@ -2,6 +2,12 @@
 
 ``ImageFilterLibrary.cginc`` provides some functions or kernels for filtering.
 
+## Import to Your Project
+
+You can import this asset from UnityPackage.
+
+- [ImageFilterLibrary.unitypackage](https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/ImageFilterLibrary.unitypackage)
+
 ## Ditherling Filter
 
 <img src="https://github.com/XJINE/Unity_VariousTextureInstancing/blob/master/Screenshots/DitheringFilter.jpg" width="100%" height="auto" />
