@@ -8,6 +8,12 @@ You can import this asset from UnityPackage.
 
 - [ImageFilterLibrary.unitypackage](https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/ImageFilterLibrary.unitypackage)
 
+### Dependencies
+
+You have to import following assets to use this asset.
+
+- [Unity_ImageEffectBase](https://github.com/XJINE/Unity_ImageEffectBase)
+
 ## Ditherling Filter
 
 <img src="https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/Screenshots/DitheringFilter.jpg" width="100%" height="auto" />
