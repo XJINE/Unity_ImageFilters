@@ -1,22 +1,22 @@
 ﻿#ifndef IMAGE_FILTER_LIBRARY_INCLUDED
 #define IMAGE_FILTER_LIBRARY_INCLUDED
 
-static const float PrewittFilterHorizontal[9] =
+static const float PrewittFilterKernelH[9] =
 { -1, 0, 1,
   -1, 0, 1,
   -1, 0, 1 };
 
-static const float PrewittFilterVertical[9] =
+static const float PrewittFilterKernelV[9] =
 { -1, -1, -1,
    0,  0,  0,
    1,  1,  1 };
 
-static const float SobelFilterHorizontal[9] =
+static const float SobelFilterKernelH[9] =
 { -1, 0, 1,
   -2, 0, 2,
   -1, 0, 1 };
 
-static const float SobelFilterVertical[9] =
+static const float SobelFilterKernelV[9] =
 { -1, -2, -1,
    0,  0,  0,
    1,  2,  1 };
@@ -55,8 +55,8 @@ float4 PrewittFilter(sampler2D tex, float2 texCoord, float2 texelSize)
         for (int y = -1; y <= 1; y++)
         {
             coordinate = float2(texCoord.x + texelSize.x * x, texCoord.y + texelSize.y * y);
-            sumHorizontal.rgb += tex2D(tex, coordinate).rgb * PrewittFilterHorizontal[count];
-            sumVertical.rgb   += tex2D(tex, coordinate).rgb * PrewittFilterVertical[count];
+            sumHorizontal.rgb += tex2D(tex, coordinate).rgb * PrewittFilterKernelH[count];
+            sumVertical.rgb   += tex2D(tex, coordinate).rgb * PrewittFilterKernelV[count];
             count++;
         }
     }
@@ -76,8 +76,8 @@ float4 SobelFilter(sampler2D tex, float2 texCoord, float2 texelSize)
         for (int y = -1; y <= 1; y++)
         {
             coordinate = float2(texCoord.x + texelSize.x * x, texCoord.y + texelSize.y * y);
-            sumHorizontal.rgb += tex2D(tex, coordinate).rgb * SobelFilterHorizontal[count];
-            sumVertical.rgb   += tex2D(tex, coordinate).rgb * SobelFilterVertical[count];
+            sumHorizontal.rgb += tex2D(tex, coordinate).rgb * SobelFilterKernelH[count];
+            sumVertical.rgb   += tex2D(tex, coordinate).rgb * SobelFilterKernelV[count];
             count++;
         }
     }
