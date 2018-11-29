@@ -24,7 +24,7 @@
             fixed4 frag(v2f_img input) : SV_Target
             {
                 return SymmetricNearestNeighborFilter
-                       (_MainTex, _MainTex_TexelSize.xy, input.uv, _HalfFilterSizePx);
+                       (_MainTex, input.uv, _MainTex_TexelSize.xy, _HalfFilterSizePx);
             }
 
             ENDCG

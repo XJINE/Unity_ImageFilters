@@ -24,7 +24,7 @@
 
             fixed4 frag(v2f_img input) : SV_Target
             {
-                return DitheringFilterDot(_MainTex, _MainTex_TexelSize.zw, input.uv);
+                return DitheringFilterDot(_MainTex, input.uv, _MainTex_TexelSize.zw);
             }
 
             ENDCG
