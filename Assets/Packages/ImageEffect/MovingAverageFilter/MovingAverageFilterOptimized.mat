@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: MovingAverageFilter
-  m_Shader: {fileID: 4800000, guid: 9c70564ecdd06034cb19812b77c183b7, type: 3}
+  m_Name: MovingAverageFilterOptimized
+  m_Shader: {fileID: 4800000, guid: bc00468bbf9e62a4d8d2c4af9ec55363, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -59,12 +59,13 @@ Material:
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _FilterSize: 3
-    - _FilterSizeH: 10
+    - _FilterSize: 1
+    - _FilterSizeH: 50
     - _FilterSizePx: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _HalfFilterSize: 33.6
     - _HalfFilterSizePx: 50.59
     - _Metallic: 0
     - _Mode: 0

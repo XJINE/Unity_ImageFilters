@@ -104,23 +104,48 @@ float4 LaplacianFilter(sampler2D tex, float2 texCoord, float2 texelSize)
     return color;
 }
 
-float4 MovingAverageFilter(sampler2D tex, float2 texCoord, float2 texelSize, int halfFilterSizePx)
+float4 MovingAverageFilter(sampler2D tex, float2 texCoord, float2 texelSize, int filterSizeH)
 {
     float4 color = float4(0, 0, 0, 1);
-    float2 coordinate;
 
-    for (int x = -halfFilterSizePx; x <= halfFilterSizePx; x++)
+    for (int x = -filterSizeH; x <= filterSizeH; x++)
     {
-        for (int y = -halfFilterSizePx; y <= halfFilterSizePx; y++)
+        for (int y = -filterSizeH; y <= filterSizeH; y++)
         {
             color.rgb += tex2D(tex, float2(texCoord.x + texelSize.x * x,
                                             texCoord.y + texelSize.y * y)).rgb;
         }
     }
 
-    int filterSizePx = halfFilterSizePx * 2 + 1;
+    color.rgb /= pow(filterSizeH * 2 + 1, 2);
 
-    color.rgb /= filterSizePx * filterSizePx;
+    return color;
+}
+
+float4 MovingAverageFilterV(sampler2D tex, float2 texCoord, float2 texelSize, int halfFilterSize, float fullFilterSizeReciprocal)
+{
+    float4 color = float4(0, 0, 0, 1);
+
+    for (int y = -halfFilterSize; y <= halfFilterSize; y++)
+    {
+        color.rgb += tex2D(tex, float2(texCoord.x, texCoord.y + texelSize.y * y)).rgb;
+    }
+
+    color.rgb *= fullFilterSizeReciprocal;
+
+    return color;
+}
+
+float4 MovingAverageFilterH(sampler2D tex, float2 texCoord, float2 texelSize, int halfFilterSize, float fullFilterSizeReciprocal)
+{
+    float4 color = float4(0, 0, 0, 1);
+
+    for (int x = -halfFilterSize; x <= halfFilterSize; x++)
+    {
+        color.rgb += tex2D(tex, float2(texCoord.x + texelSize.x * x, texCoord.y)).rgb;
+    }
+
+    color.rgb *= fullFilterSizeReciprocal;
 
     return color;
 }

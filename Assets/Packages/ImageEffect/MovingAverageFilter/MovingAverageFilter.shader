@@ -4,7 +4,7 @@
     {
         [HideInInspector]
         _MainTex("Texture", 2D) = "white" {}
-        _HalfFilterSizePx("Half Filter Size", Int) = 1
+        _FilterSizeH("Filter Size", Range(1, 50)) = 2
     }
     SubShader
     {
@@ -19,11 +19,11 @@
 
             sampler2D _MainTex;
             float4    _MainTex_TexelSize;
-            int       _HalfFilterSizePx;
+            int       _FilterSizeH;
 
             fixed4 frag(v2f_img input) : SV_Target
             {
-                return MovingAverageFilter(_MainTex, input.uv, _MainTex_TexelSize.xy, _HalfFilterSizePx);
+                return MovingAverageFilter(_MainTex, input.uv, _MainTex_TexelSize.xy, _FilterSizeH);
             }
 
             ENDCG
