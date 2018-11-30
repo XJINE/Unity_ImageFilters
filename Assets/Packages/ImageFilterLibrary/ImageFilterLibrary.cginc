@@ -104,20 +104,20 @@ float4 LaplacianFilter(sampler2D tex, float2 texCoord, float2 texelSize)
     return color;
 }
 
-float4 MovingAverageFilter(sampler2D tex, float2 texCoord, float2 texelSize, int filterSizeH)
+float4 MovingAverageFilter(sampler2D tex, float2 texCoord, float2 texelSize, int halfFilterSize)
 {
     float4 color = float4(0, 0, 0, 1);
 
-    for (int x = -filterSizeH; x <= filterSizeH; x++)
+    for (int x = -halfFilterSize; x <= halfFilterSize; x++)
     {
-        for (int y = -filterSizeH; y <= filterSizeH; y++)
+        for (int y = -halfFilterSize; y <= halfFilterSize; y++)
         {
             color.rgb += tex2D(tex, float2(texCoord.x + texelSize.x * x,
                                             texCoord.y + texelSize.y * y)).rgb;
         }
     }
 
-    color.rgb /= pow(filterSizeH * 2 + 1, 2);
+    color.rgb /= pow(halfFilterSize * 2 + 1, 2);
 
     return color;
 }
@@ -181,7 +181,7 @@ float4 SymmetricNearestNeighbor
 }
 
 float4 SymmetricNearestNeighborFilter
-    (sampler2D tex, float2 texCoord, float2 texelSize, int halfFilterSizePx)
+    (sampler2D tex, float2 texCoord, float2 texelSize, int halfFilterSize)
 {
     // NOTE:
     // SymmetricNearestNeighborFilter algorithm compare the pixels with point symmetry.
@@ -192,11 +192,11 @@ float4 SymmetricNearestNeighborFilter
     float4 centerColor = tex2D(tex, texCoord);
     float4 outputColor = centerColor;
 
-    for (int y = -halfFilterSizePx; y < 0; y++)
+    for (int y = -halfFilterSize; y < 0; y++)
     {
         float texCoordOffsetY = y * texelSize.y;
 
-        for (int x = -halfFilterSizePx; x <= halfFilterSizePx; x++)
+        for (int x = -halfFilterSize; x <= halfFilterSize; x++)
         {
             float2 texCoordOffset = float2(x * texelSize.x, texCoordOffsetY);
 
@@ -207,7 +207,7 @@ float4 SymmetricNearestNeighborFilter
         }
     }
 
-    for (int x = -halfFilterSizePx; x < 0; x++)
+    for (int x = -halfFilterSize; x < 0; x++)
     {
         float2 texCoordOffset = float2(x * texelSize.x, 0.0f);
 
