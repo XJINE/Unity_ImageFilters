@@ -10,7 +10,7 @@ You can import this asset from UnityPackage.
 
 ### Dependencies
 
-Samples are need following assets.
+Samples are depended on following assets.
 
 - [Unity_ImageEffectBase](https://github.com/XJINE/Unity_ImageEffectBase)
 
