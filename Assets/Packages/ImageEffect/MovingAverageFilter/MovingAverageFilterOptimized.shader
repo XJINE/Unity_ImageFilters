@@ -11,6 +11,9 @@
     {
         CGINCLUDE
 
+        #include "UnityCG.cginc"
+        #include "Assets/Packages/ImageFilterLibrary/ImageFilterLibrary.cginc"
+
         sampler2D _MainTex;
         float4    _MainTex_TexelSize;
         int       _HalfFilterSize;
@@ -27,8 +30,6 @@
         {
             CGPROGRAM
 
-            #include "UnityCG.cginc"
-            #include "Assets/Packages/ImageFilterLibrary/ImageFilterLibrary.cginc"
             #pragma vertex vert_img
             #pragma fragment frag
 
@@ -44,8 +45,6 @@
         {
             CGPROGRAM
 
-            #include "UnityCG.cginc"
-            #include "Assets/Packages/ImageFilterLibrary/ImageFilterLibrary.cginc"
             #pragma vertex vert_img
             #pragma fragment frag
 

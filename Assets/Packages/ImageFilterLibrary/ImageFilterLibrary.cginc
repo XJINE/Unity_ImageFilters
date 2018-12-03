@@ -21,10 +21,19 @@ static const float SobelFilterKernelV[9] =
    0,  0,  0,
    1,  2,  1 };
 
-static const float Gaussian3FilterKernel[9] =
-{ 0.0625, 0.1250, 0.0625,
-  0.1250, 0.2500, 0.1250,
-  0.0625, 0.1250, 0.0625 };
+// NOTE:
+// This means 7x7 filter.
+
+static const float4 GaussianFilterKernel[7] =
+{
+    float4(0.0205, 0.0205, 0.0205, 0),
+    float4(0.0855, 0.0855, 0.0855, 0),
+    float4(0.232,  0.232,  0.232,  0),
+    float4(0.324,  0.324,  0.324,  1),
+    float4(0.232,  0.232,  0.232,  0),
+    float4(0.0855, 0.0855, 0.0855, 0),
+    float4(0.0205, 0.0205, 0.0205, 0)
+};
 
 static const float LaplacianFilterKernel[9] =
 { -1, -1, -1,
@@ -150,20 +159,18 @@ float4 MovingAverageFilterH(sampler2D tex, float2 texCoord, float2 texelSize, in
     return color;
 }
 
-float4 Gaussian3Filter(sampler2D tex, float2 texCoord, float2 texelSize)
+float4 GaussianFilter(sampler2D tex, float4 texST, float2 texCoord, float2 offset)
 {
-    float4 color = float4(0, 0, 0, 1);
-    int count = 0;
+    float4 color  = 0;
 
-    for (int x = -1; x <= 1; x++)
+    texCoord = texCoord - offset * 3;
+
+    for(int i = 0; i < 7; i++)
     {
-        for (int y = -1; y <= 1; y++)
-        {
-            texCoord = float2(texCoord.x + texelSize.x * x,
-                              texCoord.y + texelSize.y * y);
-            color.rgb += tex2D(tex, texCoord).rgb * Gaussian3FilterKernel[count];
-            count++;
-        }
+        color += tex2D(tex, UnityStereoScreenSpaceUVAdjust(texCoord, texST))
+               * GaussianFilterKernel[i];
+
+        texCoord += offset;
     }
 
     return color;

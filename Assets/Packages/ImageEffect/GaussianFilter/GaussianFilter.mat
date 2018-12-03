@@ -6,9 +6,10 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Gaussian3Filter
-  m_Shader: {fileID: 4800000, guid: 60106a6b34dcf8d4980510f272bd8481, type: 3}
-  m_ShaderKeywords: 
+  m_Name: GaussianFilter
+  m_Shader: {fileID: 4800000, guid: 76dad5ebbae7a6d4390e31694d0a7882, type: 3}
+  m_ShaderKeywords: _BLOOM_TYPE_SCREEN _DITHER_BAYER _DITHER_TYPE_BAYER _TYPE_BAYER
+    _TYPE_DITHER_DOT
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -55,21 +56,28 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
+    - _BLOOM_TYPE: 1
+    - _BrightnessThreshold: 0.565
     - _BumpScale: 1
     - _Cutoff: 0.5
+    - _DITHER: 1
+    - _DITHER_TYPE: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _HalfFilterSizePx: 1
+    - _HalfFilterSizePx: 2.3
+    - _Intensity: 1.74
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _SamplingDistance: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
+    - _Type: 0
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:

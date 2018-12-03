@@ -20,6 +20,10 @@ You have to import following assets to use this asset.
 
 Dot type and Bayer type are includes.
 
+## Gaussian Filter
+
+<img src="https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/Screenshots/GaussianFilter.jpg" width="100%" height="auto" />
+
 ## Laplacian Filter
 
 <img src="https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/Screenshots/LaplacianFilter.jpg" width="100%" height="auto" />
