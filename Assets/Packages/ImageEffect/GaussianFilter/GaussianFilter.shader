@@ -4,7 +4,7 @@
     {
         [HideInInspector]
         _MainTex("Texture", 2D) = "white" {}
-        _SamplingDistance ("Sampling Distance", Range(1, 5)) = 1
+        _SamplingFrequency ("Sampling Frequency", Range(1, 1.5)) = 1
     }
     SubShader
     {
@@ -16,7 +16,7 @@
         sampler2D _MainTex;
         float4    _MainTex_ST;
         float4    _MainTex_TexelSize;
-        float     _SamplingDistance;
+        float     _SamplingFrequency;
 
         ENDCG
 
@@ -32,7 +32,7 @@
 
             float4 frag (v2f_img input) : SV_Target
             {
-                float2 offset = _MainTex_TexelSize.xy * float2(1, 0) * _SamplingDistance;
+                float2 offset = _MainTex_TexelSize.xy * float2(1, 0) * _SamplingFrequency;
                 return GaussianFilter(_MainTex, _MainTex_ST, input.uv, offset);
             }
 
@@ -47,7 +47,7 @@
 
             float4 frag (v2f_img input) : SV_Target
             {
-                float2 offset = _MainTex_TexelSize.xy * float2(0, 1) * _SamplingDistance;
+                float2 offset = _MainTex_TexelSize.xy * float2(0, 1) * _SamplingFrequency;
                 return GaussianFilter(_MainTex, _MainTex_ST, input.uv, offset);
             }
 
