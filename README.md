@@ -14,6 +14,12 @@ Samples are depended on following assets.
 
 - [Unity_ImageEffectBase](https://github.com/XJINE/Unity_ImageEffectBase)
 
+## BarrelDistortion
+
+<img src="https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/Screenshots/BarrelDistortion.jpg" width="100%" height="auto" />
+
+BarrelDistortion.jpg
+
 ## Ditherling Filter
 
 <img src="https://github.com/XJINE/Unity_ImageFilterLibrary/blob/master/Screenshots/DitheringFilter.jpg" width="100%" height="auto" />

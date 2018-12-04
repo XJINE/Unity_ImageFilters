@@ -251,4 +251,27 @@ float4 DitheringFilterDot(sampler2D tex, float2 texCoord, int2 texSize)
     #endif
 }
 
+float2 BarrelDistortion(float2 texCoord, float k1, float k2)
+{
+    // NOTE:
+    // k1, k2 means strength. 
+    // Popular values are k1:0.2 k2:0.01.
+
+    float2 distortedCoord;
+    float2 centerOriginCoord = texCoord - 0.5;
+
+    float rr = centerOriginCoord.x * centerOriginCoord.x
+             + centerOriginCoord.y * centerOriginCoord.y;
+    float rrrr = rr * rr;
+    float distortion = 1 + k1 * rr + k2 * rrrr;
+
+    distortedCoord = centerOriginCoord * distortion;
+    distortedCoord += 0.5;
+
+    // CAUTION:
+    // Somtimes return under 0 or over 1 value.
+
+    return distortedCoord;
+}
+
 #endif // IMAGE_FILTER_LIBRARY_INCLUDED
