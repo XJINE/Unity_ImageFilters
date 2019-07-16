@@ -11,7 +11,7 @@
         CGINCLUDE
 
         #include "UnityCG.cginc"
-        #include "Assets/Packages/ImageFilterLibrary/ImageFilterLibrary.cginc"
+        #include "Assets/Packages/Shaders/ImageFilters.cginc"
 
         sampler2D _MainTex;
         float4    _MainTex_ST;

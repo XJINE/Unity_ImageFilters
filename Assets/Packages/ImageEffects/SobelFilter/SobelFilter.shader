@@ -1,4 +1,4 @@
-﻿Shader "ImageEffect/PrewittFilter"
+﻿Shader "ImageEffect/SobelFilter"
 {
     Properties
     {
@@ -12,7 +12,7 @@
             CGPROGRAM
 
             #include "UnityCG.cginc"
-            #include "Assets/Packages/ImageFilterLibrary/ImageFilterLibrary.cginc"
+            #include "Assets/Packages/Shaders/ImageFilters.cginc"
             #pragma vertex vert_img
             #pragma fragment frag
 
@@ -21,7 +21,7 @@
 
             fixed4 frag(v2f_img input) : SV_Target
             {
-                return PrewittFilter(_MainTex, input.uv, _MainTex_TexelSize.xy);
+                return SobelFilter(_MainTex, input.uv, _MainTex_TexelSize.xy);
             }
 
             ENDCG

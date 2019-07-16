@@ -1,5 +1,5 @@
-﻿#ifndef IMAGE_FILTER_LIBRARY_INCLUDED
-#define IMAGE_FILTER_LIBRARY_INCLUDED
+﻿#ifndef IMAGE_FILTERS_INCLUDED
+#define IMAGE_FILTERS_INCLUDED
 
 static const float PrewittFilterKernelH[9] =
 { -1, 0, 1,
@@ -274,4 +274,4 @@ float2 BarrelDistortion(float2 texCoord, float k1, float k2)
     return distortedCoord;
 }
 
-#endif // IMAGE_FILTER_LIBRARY_INCLUDED
+#endif // IMAGE_FILTERS_INCLUDED
