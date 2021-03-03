@@ -41,6 +41,10 @@ Dot type and Bayer type are includes.
 
 <img src="https://github.com/XJINE/Unity_ImageFilters/blob/master/Screenshots/MovingAverageFilter.jpg" width="100%" height="auto" />
 
+## RobertsCrossFilter
+
+<img src="https://github.com/XJINE/Unity_ImageFilters/blob/master/Screenshots/RobertsCrossFilter.jpg" width="100%" height="auto" />
+
 ## PrewittFilter
 
 <img src="https://github.com/XJINE/Unity_ImageFilters/blob/master/Screenshots/PrewittFilter.jpg" width="100%" height="auto" />
