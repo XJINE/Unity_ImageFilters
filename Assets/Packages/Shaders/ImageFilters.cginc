@@ -2,24 +2,32 @@
 #define IMAGE_FILTERS_INCLUDED
 
 static const float PrewittFilterKernelH[9] =
-{ -1, 0, 1,
-  -1, 0, 1,
-  -1, 0, 1 };
+{
+    -1, 0, 1,
+    -1, 0, 1,
+    -1, 0, 1
+};
 
 static const float PrewittFilterKernelV[9] =
-{ -1, -1, -1,
-   0,  0,  0,
-   1,  1,  1 };
+{
+   -1, -1, -1,
+    0,  0,  0,
+    1,  1,  1
+};
 
 static const float SobelFilterKernelH[9] =
-{ -1, 0, 1,
-  -2, 0, 2,
-  -1, 0, 1 };
+{
+    -1, 0, 1,
+    -2, 0, 2,
+    -1, 0, 1
+};
 
 static const float SobelFilterKernelV[9] =
-{ -1, -2, -1,
-   0,  0,  0,
-   1,  2,  1 };
+{
+    -1, -2, -1,
+     0,  0,  0,
+     1,  2,  1
+};
 
 // NOTE:
 // This means 7x7 filter.
@@ -36,21 +44,48 @@ static const float4 GaussianFilterKernel[7] =
 };
 
 static const float LaplacianFilterKernel[9] =
-{ -1, -1, -1,
-  -1,  8, -1,
-  -1, -1, -1 };
+{
+    -1, -1, -1,
+    -1,  8, -1,
+    -1, -1, -1
+};
 
 static const float4x4 DitherMatrixDot =
-{ 0.74, 0.27, 0.40, 0.60,
-  0.80, 0.00, 0.13, 0.94,
-  0.47, 0.54, 0.67, 0.34,
-  0.20, 1.00, 0.87, 0.07 };
+{
+    0.74, 0.27, 0.40, 0.60,
+    0.80, 0.00, 0.13, 0.94,
+    0.47, 0.54, 0.67, 0.34,
+    0.20, 1.00, 0.87, 0.07
+};
 
 static const float4x4 DitherMatrixBayer =
-{ 0.000, 0.500, 0.125, 0.625,
-  0.750, 0.250, 0.875, 0.375,
-  0.187, 0.687, 0.062, 0.562,
-  0.937, 0.437, 0.812, 0.312 };
+{
+    0.000, 0.500, 0.125, 0.625,
+    0.750, 0.250, 0.875, 0.375,
+    0.187, 0.687, 0.062, 0.562,
+    0.937, 0.437, 0.812, 0.312
+};
+
+float4 RobertsCrossFilter(sampler2D tex, float2 texCoord, float2 texelSize)
+{
+    // Filter1
+    // 1,  0,
+    // 0, -1
+
+    // Filter2
+    //  0, 1,
+    // -1, 0
+
+    float2 uv0 = texCoord;
+    float2 uv1 = texCoord + texelSize;
+    float2 uv2 = texCoord + float2(texelSize.x, 0);
+    float2 uv3 = texCoord + float2(0, texelSize.y);
+
+    float4 g1 = tex2D(tex, uv0) - tex2D(tex, uv1);
+    float4 g2 = tex2D(tex, uv2) - tex2D(tex, uv3);
+
+    return sqrt(dot(g1, g1) + dot(g2, g2));
+}
 
 float4 PrewittFilter(sampler2D tex, float2 texCoord, float2 texelSize)
 {
@@ -122,7 +157,7 @@ float4 MovingAverageFilter(sampler2D tex, float2 texCoord, float2 texelSize, int
         for (int y = -halfFilterSize; y <= halfFilterSize; y++)
         {
             color.rgb += tex2D(tex, float2(texCoord.x + texelSize.x * x,
-                                            texCoord.y + texelSize.y * y)).rgb;
+                                           texCoord.y + texelSize.y * y)).rgb;
         }
     }
 
